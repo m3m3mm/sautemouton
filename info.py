@@ -2,7 +2,7 @@ with open("niveau_info.txt","r") as f:
     list = f.read().splitlines()
     f.close()
 
-character = {"position": (0,0), "speed": (0,0)}
+character = {"position": (0,0), "velocity": (0,0)}
 lst_blocks = []
 print(list)
 
