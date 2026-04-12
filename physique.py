@@ -33,7 +33,7 @@ def collision(character, lst_blocks):
     c_left   = x
     c_right  = x + WIDTH
     c_top    = y
-    c_bottom = y + HEIGTH
+    c_bottom = y + HEIGHT
 
     for bloc in lst_blocks:
         b_left, b_top, b_right, b_bottom = bloc
