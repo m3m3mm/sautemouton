@@ -18,7 +18,7 @@ goal_l = list_info[1].split(", ",)
 goal = (int(goal_l[0]),int(goal_l[1]),int(goal_l[2],),int(goal_l[3]))
 # print(goal)
 
-"""logging the blocks in our DB for usage later"""
+"""logging the blocks in our database for usage later"""
 for i in range(2,len(list_info)):
     block_l = list_info[i].split(", ", )
     block = (int(block_l[0]), int(block_l[1]), int(block_l[2], ), int(block_l[3]))
