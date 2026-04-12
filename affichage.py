@@ -6,8 +6,7 @@ from fltk import rectangle, cercle
 def draw_blocks(lst_blocks):
     """draws blocks"""
     for block in lst_blocks:
-        x1, y1 = block[0]
-        x2, y2 = block[1]
+        x1, y1, x2, y2 = block
         rectangle(x1, y1, x2, y2)
 
 

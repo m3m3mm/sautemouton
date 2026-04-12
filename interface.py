@@ -7,10 +7,14 @@ def game(character, lst_blocks): #TODO: add "goal" later
     """loop of the game which uses all the functions"""
     click = None
     draw_character(character)
-    #draw_blocks(lst_blocks)
+    draw_blocks(lst_blocks)
     #draw_final_object(goal)
     while True:
         ev = attend_ev()
+
+        # added game end on clicking "X"
+        if type_ev(ev) == "Quitte":
+            break
 
         if type_ev(ev) == 'ClicGauche':
             x = abscisse(ev)
