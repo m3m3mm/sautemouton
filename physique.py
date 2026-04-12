@@ -112,6 +112,7 @@ def simulate(character, lst_blocks):
         step(character, lst_blocks)
 
         efface("mouton")
+        efface("vector")
         draw_character(character)
         mise_a_jour()
 
