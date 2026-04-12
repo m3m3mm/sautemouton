@@ -1,7 +1,8 @@
 import math
 from const_values import *
 from info import character, lst_blocks, goal
-
+from fltk import *
+from affichage import draw_character
 
 def click_to_velocity(character, click):
     """click_vers_vitesse assigns the character a velocity that corresponds to the
@@ -47,7 +48,7 @@ def collision(character, lst_blocks):
     return None  # no collision
 
 # print(collision(character, lst_blocks))
-
+"""to check if the character hit anything and push him out of it"""
 def hit(character, lst_blocks):
     block_hit = collision(character, lst_blocks)
 
@@ -89,7 +90,7 @@ def hit(character, lst_blocks):
 
     character["velocity"] = (0, 0)
 
-
+"""to move the character"""
 def step(character, lst_blocks): #TODO: figure out what a step() should return and how to work with it
     current_x, current_y = character["position"]
     vx, vy  = character["velocity"]
@@ -103,6 +104,19 @@ def step(character, lst_blocks): #TODO: figure out what a step() should return a
     character["velocity"] = (new_vx, new_vy)
 
     hit(character, lst_blocks)
+
+"""basically a loop for step(), but if more complex - does a simulation of a launch of our mouton"""
+def simulate(character, lst_blocks):
+    while True:
+        old_pos = character["position"]
+        step(character, lst_blocks)
+
+        efface("mouton")
+        draw_character(character)
+        mise_a_jour()
+
+        if character["position"] == old_pos:
+            return
 
 
 def victory(character, goal):
