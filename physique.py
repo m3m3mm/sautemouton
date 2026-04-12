@@ -46,30 +46,63 @@ def collision(character, lst_blocks):
 
     return None  # no collision
 
-print(collision(character, lst_blocks))
+# print(collision(character, lst_blocks))
 
 def hit(character, lst_blocks):
     block_hit = collision(character, lst_blocks)
+
     if block_hit is None:
         return
+
+    b_left, b_top, b_right, b_bottom = block_hit
+    x, y = character["position"]
+    vx, vy = character["velocity"]
+
+    if vy >= 0:
+        """we count if the mouton is in the block from the top"""
+        overlap_y = (y + HEIGHT) - b_top
+        """we put the mouton on the top of the block to let him stand on it for the next move"""
+        new_y = b_top - HEIGHT
     else:
-        b_left, b_top, b_right, b_bottom = block_hit
-        vx = character["velocity"][0]
-        vy = character["velocity"][1]
-        if vy > 0 :
-            y = b_top - HEIGHT
-        if vy < 0 :
-            y = b_bottom
-        if vx > 0 :
-            x = b_left - WIDTH
-        if vx < 0 :
-            x = b_right
-        character["position"] = (x, y)
-        return
+        """we count if the mouton is in the block from the bottom"""
+        overlap_y = b_bottom - y
+        """we put the mouton on the bottom of the block to fall"""
+        new_y = b_bottom
+
+    if vx >= 0:
+        """we check whether the mouton is in the block from the left"""
+        overlap_x = (x + WIDTH) - b_left
+
+        new_x = b_left - WIDTH
+    else:
+        """we count if the mouton is in the block from the right"""
+        overlap_x = b_right - x
+
+        new_x = b_right
+
+    """if the mouton is more in the block from the side, than from the top or bottom, we change his x"""
+    if overlap_x < overlap_y:
+        character["position"] = (new_x, y)
+    else:
+        """if the mouton is in the block more from the top or bottom, we change his y"""
+        character["position"] = (x, new_y)
+
+    character["velocity"] = (0, 0)
+
 
 def step(character, lst_blocks): #TODO: figure out what a step() should return and how to work with it
-    """pas"""
-    pass
+    current_x, current_y = character["position"]
+    vx, vy  = character["velocity"]
+    new_x = current_x + STEP * vx
+    new_y = current_y + STEP * vy
+
+    new_vx = vx + STEP * gravity_x
+    new_vy = vy + STEP * gravity_y
+
+    character["position"] = (new_x, new_y)
+    character["velocity"] = (new_vx, new_vy)
+
+    hit(character, lst_blocks)
 
 
 def victory(character, goal):

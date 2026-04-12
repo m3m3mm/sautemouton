@@ -26,6 +26,7 @@ def game(character, lst_blocks): #TODO: add "goal" later
             if click is not None:
                 vx, vy = click_to_velocity(character, click)
                 character["velocity"] = (vx, vy)
+                step(character, lst_blocks) # without this line mouton/barashek won't move
 
 
         efface('mouton')

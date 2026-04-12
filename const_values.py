@@ -1,5 +1,7 @@
 height = 800
 width = 600
 vmax = 10
-gravity = 0 # A priori, la gravité est strictement verticale (gx = 0) (from file of the project)
+gravity_x = 0 # A priori, la gravité est strictement verticale (gx = 0) (from file of the project)
+gravity_y = 9.8 # TODO: figure out the value of gravity for y
 WIDTH, HEIGHT = 15, 15
+STEP = 1
