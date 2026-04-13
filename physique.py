@@ -84,11 +84,15 @@ def hit(character, lst_blocks):
     """if the mouton is more in the block from the side, than from the top or bottom, we change his x"""
     if overlap_x < overlap_y:
         character["position"] = (new_x, y)
+        character["velocity"] = (0, vy)
     else:
         """if the mouton is in the block more from the top or bottom, we change his y"""
         character["position"] = (x, new_y)
+        if vy > 0:
+            character["velocity"] = (0, 0)
+        else:
+            character["velocity"] = (vx, 0)
 
-    character["velocity"] = (0, 0)
 
 """to move the character"""
 def step(character, lst_blocks): #TODO: figure out what a step() should return and how to work with it
