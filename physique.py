@@ -5,26 +5,26 @@ from fltk import *
 from affichage import draw_character
 
 def click_to_velocity(character, click):
-    """click_vers_vitesse assigns the character a velocity that corresponds to the
+    """click_to_velocity assigns the character a velocity that corresponds to the
     vector from its current position to the click"""
-    x_of_character = character["position"][0]
-    y_of_character = character["position"][1]
+    x, y = character["position"]
+    cx, cy = click
 
-    x_of_click, y_of_click = click
+    dx = cx - x
+    dy = cy - y
 
+    scale = 0.1
     """ from click to character for physics because our x,y is inversed in fltk (y goes down and x goes right) """
-    dx = x_of_click - x_of_character
-    dy = y_of_click - y_of_character
+    vx = dx * scale
+    vy = dy * scale * 1.5
 
-    vector_length = math.sqrt(dx**2 + dy**2)
+    speed = math.sqrt(vx ** 2 + vy ** 2)
 
-    if vector_length == 0:
-        return 0, 0
-    elif vector_length <= vmax:
-        return dx, dy
-    else:
-        return dx / vector_length * vmax, dy / vector_length * vmax
+    if speed > vmax:
+        vx = vx / speed * vmax
+        vy = vy / speed * vmax
 
+    return vx, vy
 
 """ with this function we check if the character model 
 (all of his rectangle sides) is in collision with any of the blocks in our lst_blocks"""
