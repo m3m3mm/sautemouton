@@ -29,7 +29,8 @@ def game(character, lst_blocks): #TODO: add "goal" later
                 efface("vector")
                 simulate(character, lst_blocks) # without this line mouton/barashek won't move
                 click = None
-
+                if victory(character,goal):
+                    print("You won!") #placeholder for win message
 
         efface('mouton')
         draw_character(character)

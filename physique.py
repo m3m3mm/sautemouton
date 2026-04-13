@@ -125,6 +125,21 @@ def simulate(character, lst_blocks):
 
 
 def victory(character, goal):
-    pass
+    x, y = character["position"]
+    c_left = x
+    c_right = x + WIDTH
+    c_top = y
+    c_bottom = y + HEIGHT
+
+    g_left, g_top, g_right, g_bottom = goal
+
+    if (c_right > g_left and
+            c_left < g_right and
+            c_bottom > g_top and
+            c_top < g_bottom):
+        return True  # collision
+    else:
+        return False
+
 
 
