@@ -6,4 +6,4 @@ gravity_y = 1 # TODO: figure out the value of gravity for y
 WIDTH, HEIGHT = 15, 15
 STEP = 0.35 # "1" is too much
 
-"""to adjust the game - change STEP and gravity_x"""
+"""to adjust the game - change STEP and gravity_y"""
