@@ -16,7 +16,7 @@ character["position"] = (int(position[0]),int(position[1]))
 """logging the goal for our barashek"""
 goal_l = list_info[1].split(", ",)
 goal = (int(goal_l[0]),int(goal_l[1]),int(goal_l[2],),int(goal_l[3]))
-# print(goal)
+#print(goal)
 
 """logging the blocks in our database for usage later"""
 for i in range(2,len(list_info)):

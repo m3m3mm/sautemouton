@@ -3,12 +3,12 @@ from affichage import *
 from info import *
 from physique import *
 
-def game(character, lst_blocks): #TODO: add "goal" later
+def game(character, lst_blocks, goal):
     """loop of the game which uses all the functions"""
     click = None
     draw_character(character)
     draw_blocks(lst_blocks)
-    #draw_final_object(goal)
+    draw_final_object(goal)
     while True:
         ev = attend_ev()
 
