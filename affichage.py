@@ -2,7 +2,6 @@ from ctypes.wintypes import tagMSG
 from info import *
 from fltk import *
 
-
 def draw_blocks(lst_blocks):
     """draws blocks"""
     for block in lst_blocks:

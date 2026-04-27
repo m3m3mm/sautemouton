@@ -3,7 +3,6 @@ from affichage import *
 from info import *
 from physique import *
 from const_values import *
-from PIL import Image
 
 def game(character, lst_blocks, goal):
     """loop of the game which uses all the functions"""
