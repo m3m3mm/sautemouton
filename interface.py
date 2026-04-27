@@ -41,7 +41,9 @@ def game(character, lst_blocks, goal):
         draw_character(character)
 
         if click is not None:
-            ligne(character['position'][0], character['position'][1], x, y,epaisseur = 2, tag = "vector")
-            fleche(character['position'][0], character['position'][1], x, y,epaisseur = 2, tag = "vector")
+            ligne(character['position'][0], character['position'][1], x, y,epaisseur = 4, tag = "vector",
+                  couleur = "white")
+            fleche(character['position'][0], character['position'][1], x, y,epaisseur = 3, tag = "vector",
+                   couleur = "white")
         mise_a_jour()
 

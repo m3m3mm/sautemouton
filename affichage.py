@@ -1,13 +1,13 @@
 from ctypes.wintypes import tagMSG
 from info import *
-from fltk import rectangle, cercle, texte, image, remplissage
+from fltk import *
 
 
 def draw_blocks(lst_blocks):
     """draws blocks"""
     for block in lst_blocks:
         x1, y1, x2, y2 = block
-        rectangle(x1, y1, x2, y2, remplissage="red")
+        #rectangle(x1, y1, x2, y2, remplissage="red")
         image(x1, y1, "block.png", largeur = x2 - x1,
               hauteur = y2 - y1, ancrage="nw")
 
@@ -15,7 +15,9 @@ def draw_blocks(lst_blocks):
 def draw_final_object(goal):
     """draws final object that character needs to reach"""
     x1, y1, x2, y2 = goal
-    rectangle(x1, y1, x2, y2, remplissage="white")
+    #rectangle(x1, y1, x2, y2, remplissage="white")
+    image(x1, y1, 'chest.png', largeur = x2 - x1, hauteur = y2 - y1, ancrage="nw")
+
 
 
 def draw_character(character):
@@ -34,5 +36,30 @@ def create_design():
     """creates design"""
     image(0, 0, "background.ppm", ancrage="nw")
 
-def draw_main_menu():
+def draw_main_menu(width, height):
     """draws main menu"""
+    image(width / 2, height / 2,
+          "main_menu.png",
+          largeur=width,
+          hauteur=height,
+          ancrage="center", tag="main_menu")
+    #rectangle(50, 170, 190, 220, remplissage="red")
+    image(width/7, height/2 - 30, 'startgame.png', largeur=140, hauteur=50 , ancrage="nw" )
+    image(width/7, height/2 + 40, 'option.png', largeur=140, hauteur=50 , ancrage="nw" )
+
+    while True:
+
+        ev = attend_ev()
+
+        if type_ev(ev) == "Quitte":
+            break
+        if type_ev(ev) == 'ClicGauche':
+            click = (abscisse(ev), ordonnee(ev))
+            if (width/7) <= click[0] <= (width/7 + 140):
+                if (height/2-30) <= click[1] <= (height/2 + 20):
+                    started = True
+                    return started
+                elif (height/2+40) <= click[1] <= (height/2 + 90):
+                    print('nado sdelat levels')
+
+
