@@ -3,6 +3,7 @@ from const_values import *
 from info import character, lst_blocks, goal
 from fltk import *
 from affichage import draw_character
+import pygame
 
 def click_to_velocity(character, click):
     """click_to_velocity assigns the character a velocity that corresponds to the
@@ -116,6 +117,7 @@ def simulate(character, lst_blocks):
     while True:
         old_pos = character["position"]
         step(character, lst_blocks)
+
 
         efface("mouton")
         efface("vector")

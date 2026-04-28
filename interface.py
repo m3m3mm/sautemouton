@@ -1,6 +1,4 @@
-from fltk import *
 from affichage import *
-from info import *
 from physique import *
 from const_values import *
 
@@ -26,11 +24,16 @@ def game(character, lst_blocks, goal):
             efface("vector")
 
         if type_ev(ev) == 'ClicDroit':
+            jump = pygame.mixer.Sound('jump.mp3')
+            jump.set_volume(0.3)
+            jump.play(0)
             if click is not None:
                 vx, vy = click_to_velocity(character, click)
                 character["velocity"] = (vx, vy)
                 efface("vector")
                 simulate(character, lst_blocks) # without this line mouton/barashek won't move
+
+
                 click = None
                 if victory(character,goal):
                     draw_victory_menu(height, width)

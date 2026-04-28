@@ -43,8 +43,8 @@ def draw_main_menu(width, height):
           hauteur=height,
           ancrage="center", tag="main_menu")
     #rectangle(50, 170, 190, 220, remplissage="red")
-    image(width/7, height/2 - 30, 'startgame.png', largeur=140, hauteur=50 , ancrage="nw" )
-    image(width/7, height/2 + 40, 'option.png', largeur=140, hauteur=50 , ancrage="nw" )
+    image(width/7, height/2 - 30, 'startgame.png', largeur=140, hauteur=50 , ancrage="nw", tag="start")
+    image(width/7, height/2 + 40, 'option.png', largeur=140, hauteur=50 , ancrage="nw", tag="levels")
 
     while True:
 
@@ -57,8 +57,17 @@ def draw_main_menu(width, height):
             if (width/7) <= click[0] <= (width/7 + 140):
                 if (height/2-30) <= click[1] <= (height/2 + 20):
                     started = True
-                    return started
+                    selected_level = 'niveau_info.txt'
+                    return started, selected_level
                 elif (height/2+40) <= click[1] <= (height/2 + 90):
                     print('nado sdelat levels')
+                    efface('start')
+                    efface('levels')
+                    rectangle(67, 198, 177, 240, remplissage='red')
+                    rectangle(67, 249, 177, 290, remplissage='red')
+                    image(width/7, height/2 - 30, 'levels.png', largeur=140, hauteur=160 , ancrage="nw", tag="levels")
+
+
+
 
 
