@@ -1,4 +1,4 @@
-from ctypes.wintypes import tagMSG
+from const_values import WIDTH, HEIGHT
 from info import *
 from fltk import *
 
@@ -22,7 +22,7 @@ def draw_final_object(goal):
 def draw_character(character):
     """draws character"""
     x, y = character['position']
-    cercle(x, y, 15, remplissage="red", tag="mouton")
+    cercle(x + WIDTH / 2, y + HEIGHT / 2, WIDTH / 2, remplissage="red", tag="mouton")
 
 
 def draw_victory_menu(height, width):

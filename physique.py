@@ -14,18 +14,19 @@ def click_to_velocity(character, click):
     dx = cx - x
     dy = cy - y
 
-    scale = 0.1
     """ from click to character for physics because our x,y is inversed in fltk (y goes down and x goes right) """
-    vx = dx * scale
-    vy = dy * scale * 1.5
 
-    speed = math.sqrt(vx ** 2 + vy ** 2)
+
+    speed = math.sqrt(dx ** 2 + dy ** 2)
+
+    if speed == 0:
+        return 0,0
 
     if speed > vmax:
-        vx = vx / speed * vmax
-        vy = vy / speed * vmax
+        dx = dx / speed * vmax
+        dy = dy / speed * vmax
 
-    return vx, vy
+    return dx, dy
 
 """ with this function we check if the character model 
 (all of his rectangle sides) is in collision with any of the blocks in our lst_blocks"""
@@ -144,6 +145,5 @@ def victory(character, goal):
         return True  # collision
     else:
         return False
-
 
 
