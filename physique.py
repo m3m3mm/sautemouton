@@ -109,7 +109,7 @@ def step(character, lst_blocks): #TODO: figure out what a step() should return a
     character["position"] = (new_x, new_y)
     character["velocity"] = (new_vx, new_vy)
 
-    cercle(current_x, current_y, 3, remplissage="white", tag="shadow_of_step")
+    cercle(current_x + WIDTH / 2, current_y + HEIGHT / 2, 3, remplissage="white", tag="shadow_of_step")
 
     hit(character, lst_blocks)
 
