@@ -5,6 +5,9 @@ from const_values import *
 def game(character, lst_blocks, goal):
     """loop of the game which uses all the functions"""
     click = None
+
+    history = [character["position"]] # for backspace functionality we need the history of our positions
+
     create_design()
     draw_character(character)
     draw_blocks(lst_blocks)
@@ -32,12 +35,22 @@ def game(character, lst_blocks, goal):
                 character["velocity"] = (vx, vy)
                 efface("vector")
                 simulate(character, lst_blocks) # without this line mouton/barashek won't move
-
+                history.append(character["position"]) # saving positions
 
                 click = None
                 if victory(character,goal):
                     draw_victory_menu(height, width)
                     print("You won!") #placeholder for win message
+
+        if type_ev(ev) == 'Touche':
+            if touche(ev) == 'BackSpace':
+                if len(history) > 1:  # we check if is possible to go back
+                    history.pop()
+                    character["position"] = history[-1]
+                    character["velocity"] = (0, 0)
+                    efface("shadow_of_step")
+                    efface("mouton")
+                    draw_character(character)
 
         efface('mouton')
         draw_character(character)
