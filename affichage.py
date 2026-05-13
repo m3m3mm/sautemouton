@@ -24,14 +24,14 @@ def draw_final_object(goal):
 def draw_character(character):
     """draws character"""
     x, y = character['position']
-    cercle(x + WIDTH / 2, y + HEIGHT / 2, WIDTH / 2, remplissage="red", tag="mouton")
+    #cercle(x + WIDTH / 2, y + HEIGHT / 2, WIDTH / 2, remplissage="red", tag="mouton")
+    image(x + WIDTH / 2, y + HEIGHT / 2, "design/wooly.png", largeur = 30, hauteur = 30, ancrage="center", tag="mouton")
 
 
 def draw_victory_menu(height, width):
     """draws victory menu"""
-    rectangle(100, 130, width-100, height-130, remplissage="red", tag="victory")
-    texte(120, 195, "You won!", taille=10, tag="victory")
-
+    efface_tout()
+    image(0, 0, 'design/winmenu.png', largeur = 345, hauteur = 400, ancrage='nw', tag='victory')
 
 def create_design():
     """creates design"""
@@ -63,11 +63,10 @@ def draw_main_menu(width, height):
                     selected_level = 'niveau_info.txt'
                     return started, selected_level
                 elif (height/2+40) <= click[1] <= (height/2 + 90):
-                    print('nado sdelat levels')
                     efface('start')
                     efface('levels')
-                    rectangle(67, 198, 177, 240, remplissage='red')
-                    rectangle(67, 249, 177, 290, remplissage='red')
+                    #rectangle(67, 198, 177, 240, remplissage='red')
+                    #rectangle(67, 249, 177, 290, remplissage='red')
                     image(width/7, height/2 - 30, 'design/levels.png', largeur=140, hauteur=160 , ancrage="nw", tag="levels")
 
                     ev2 = attend_ev()

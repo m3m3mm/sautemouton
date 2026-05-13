@@ -1,3 +1,5 @@
+import pygame.mixer
+
 from affichage import *
 from physique import *
 from const_values import *
@@ -41,6 +43,12 @@ def game(character, lst_blocks, goal):
 
                 click = None
                 if victory(character, goal):
+
+                    pygame.mixer.music.stop()
+                    pygame.mixer.music.load('Wooly Victory.mp3')
+                    pygame.mixer.music.set_volume = 0.3
+                    pygame.mixer.music.play(-1)
+
                     draw_victory_menu(height, width)
                     print("You won!")  # placeholder for win message
 
