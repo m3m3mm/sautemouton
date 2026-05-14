@@ -3,6 +3,8 @@ from fltk import *
 from physique import *
 from info import goal
 from time import sleep
+from collections import deque
+
 
 SOLVER_STEP = 0.3
 
@@ -38,7 +40,8 @@ def get_velocities():
     step = 2
     for vx in range(int(-vmax), vmax + 1, step):
         for vy in range(-vmax, vmax + 1, step):
-            velocities.append((vx, vy))
+            if math.sqrt(vx ** 2 + vy ** 2) <= vmax:
+                velocities.append((vx, vy))
     return velocities
 
 global_velocities = get_velocities()
@@ -103,5 +106,40 @@ def dfs(start_character, lst_blocks, goal):
                 continue
 
             stack.append((new_char, path + [(vx, vy)]))
+
+    return None
+
+
+"""BFS - only change is deque instead of list"""
+
+def bfs(start_character, lst_blocks, goal):
+    visited = set()
+    # очередь вместо стека - единственное отличие от DFS
+    queue = deque([
+        ({'position': start_character['position'], 'velocity': (0, 0)}, [])
+    ])
+
+    while queue:
+        char_state, path = queue.popleft()  # popleft, а не pop
+
+        if victory(char_state, goal):
+            return path
+
+        pos = roundup_pos(char_state['position'])
+        if pos in visited:
+            continue
+        visited.add(pos)
+
+        for vx, vy in global_velocities:
+            new_char = {
+                'position': char_state['position'],
+                'velocity': (vx, vy)
+            }
+            solver_simulate(new_char, lst_blocks)
+
+            if not is_valid_state(new_char, lst_blocks):
+                continue
+
+            queue.append((new_char, path + [(vx, vy)]))
 
     return None

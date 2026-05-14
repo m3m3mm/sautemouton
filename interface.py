@@ -108,6 +108,52 @@ def game(character, lst_blocks, goal):
 
                             if dolly["position"] == old_pos:
                                 break
+            if touche(ev) == 'k':
+                saved_pos = character["position"]
+                saved_v = character["velocity"]
+
+                print("Solving with BFS ...")
+
+                dolly = {"position": saved_pos, "velocity": (0, 0)}
+
+                path = bfs(dolly, lst_blocks, goal)
+
+                character["position"] = saved_pos
+                character["velocity"] = saved_v
+
+                if path is None:
+                    print("Solution not found!")
+
+                else:
+                    print("Solution found")
+
+                    efface("solver_path")
+                    efface("solver_character")
+
+                    dolly = {"position": saved_pos,"velocity": (0, 0)}
+
+                    for vx, vy in path:
+                        dolly["velocity"] = (vx, vy)
+
+                        while True:
+                            old_pos = dolly["position"]
+
+                            solver_step(dolly, lst_blocks)
+
+                            x, y = dolly["position"]
+
+                            cercle(x + WIDTH / 2,y + HEIGHT / 2, 3, couleur="yellow", remplissage="yellow", tag="solver_path")
+
+                            efface("solver_character")
+
+                            cercle(x + WIDTH / 2, y + HEIGHT / 2, WIDTH / 2, couleur="orange", remplissage="orange", tag="solver_character")
+
+                            mise_a_jour()
+
+                            sleep(0.01)
+
+                            if dolly["position"] == old_pos:
+                                break
 
         efface('mouton')
         draw_character(character)
