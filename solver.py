@@ -23,14 +23,15 @@ def solver_simulate(character, lst_blocks):
     steps = 0
 
     while steps < max_steps:
-        old_pos = character["position"]
 
-        solver_step(character, lst_blocks)
+        for _ in range(max_steps):
+            old_pos = character["position"]
+            solver_step(character, lst_blocks)
+            if character["position"] == old_pos:
+                character["velocity"] = (0, 0)
+                return
+        character["velocity"] = (-1, -1)  # for is_valid_state
 
-        if character["position"] == old_pos:
-            return
-
-        steps += 1
 
 def get_velocities():
     velocities = []
@@ -45,36 +46,55 @@ global_velocities = get_velocities()
 def roundup_pos(position):
     return (int(position[0]) // POSITION_R, int(position[1]) // POSITION_R)
 
+def is_valid_state(character, lst_blocks):
+    x, y = character['position']
+    vx, vy = character['velocity']
+
+    # if the sheep is still moving
+    if (vx, vy) != (0, 0):
+        return False
+
+    # if the sheep is stuck in a wall/block
+    if collision(character, lst_blocks) is not None:
+        return False
+
+    # if SOMEHOW our sheep is out of bounds
+    if x < 0 or y < 0 or x > width or y > height:
+        return False
+
+    return True
+
 """DFS solution"""
 
-def dfs(character, lst_blocks, goal, visited=None, path=None):
-    if visited is None:
-        visited = set()
-    if path is None:
-        path = []
+def dfs(start_character, lst_blocks, goal):
+    visited = set()
+    # now we're saving it in stack, not with recursion,
+    # no mutation, only copies + no pop/append - branches out
+    stack = [
+        ({'position': start_character['position'], 'velocity': (0, 0)}, [])
+    ]
 
-    if victory(character, goal):
-        return path[:] # returning the path if won
+    while stack:
+        char_state, path = stack.pop()
 
-    pos = roundup_pos(character["position"])
-    if pos in visited:
-        return None
-    visited.add(pos)
+        if victory(char_state, goal):
+            return path
 
-    for vx, vy in global_velocities:
-        saved_pos = character["position"]
-        saved_v =  character["velocity"]
+        pos = roundup_pos(char_state['position'])
+        if pos in visited:
+            continue
+        visited.add(pos)
 
-        character["velocity"] = (vx,vy)
-        solver_simulate(character, lst_blocks)
+        for vx, vy in global_velocities:
+            new_char = {
+                'position': char_state['position'],
+                'velocity': (vx, vy)
+            }
+            solver_simulate(new_char, lst_blocks)
 
-        path.append((vx,vy))
-        result = dfs(character,lst_blocks,goal,visited,path)
-        if result is not None:
-            return result
-        path.pop()
+            if not is_valid_state(new_char, lst_blocks):
+                continue
 
-        character["position"] = saved_pos
-        character["velocity"] = saved_v
+            stack.append((new_char, path + [(vx, vy)]))
 
     return None

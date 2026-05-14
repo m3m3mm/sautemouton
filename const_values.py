@@ -7,3 +7,4 @@ WIDTH, HEIGHT = 20, 20
 STEP = 0.5 # "1" is too much
 POSITION_R = 5
 """to adjust the game - change STEP and gravity_y"""
+MAX_ARROW_PX = 75  # максимальная визуальная длина стрелки в пикселях

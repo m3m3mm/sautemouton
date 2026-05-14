@@ -114,18 +114,17 @@ def game(character, lst_blocks, goal):
 
         if click is not None:
             cx, cy = character['position'][0] + WIDTH / 2, character['position'][1] + HEIGHT / 2
-            dx = x - cx
-            dy = y - cy
+            dx = click[0] - cx
+            dy = click[1] - cy
             dist = math.sqrt(dx ** 2 + dy ** 2)
 
-            if dist > vmax:
-                dx = dx / dist * vmax * 3
-                dy = dy / dist * vmax * 3
+            if dist > 0:
+                visual_len = min(dist, MAX_ARROW_PX)  # длина стрелки = расстояние мышки, но не больше MAX
+                ex = cx + (dx / dist) * visual_len
+                ey = cy + (dy / dist) * visual_len
 
-            ex, ey = cx + dx, cy + dy  # endpoint стрелки
-
-            ligne(cx, cy, ex, ey, epaisseur=4, tag="vector", couleur="white")
-            fleche(cx, cy, ex, ey, epaisseur=3, tag="vector", couleur="white")
+                ligne(cx, cy, ex, ey, epaisseur=4, tag="vector", couleur="white")
+                fleche(cx, cy, ex, ey, epaisseur=3, tag="vector", couleur="white")
 
         mise_a_jour()
 

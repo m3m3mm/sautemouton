@@ -9,24 +9,21 @@ def click_to_velocity(character, click):
     """click_to_velocity assigns the character a velocity that corresponds to the
     vector from its current position to the click"""
     x, y = character["position"]
-    cx, cy = click
+    char_cx = x + WIDTH / 2
+    char_cy = y + HEIGHT / 2
 
-    dx = cx - x
-    dy = cy - y
-
+    dx = click[0] - char_cx
+    dy = click[1] - char_cy
     """ from click to character for physics because our x,y is inversed in fltk (y goes down and x goes right) """
 
+    dist = math.sqrt(dx ** 2 + dy ** 2)
+    if dist == 0:
+        return 0, 0
 
-    speed = math.sqrt(dx ** 2 + dy ** 2)
+    scale = min(dist, MAX_ARROW_PX) / MAX_ARROW_PX
+    speed = scale * vmax
 
-    if speed == 0:
-        return 0,0
-
-    if speed > vmax:
-        dx = dx / speed * vmax
-        dy = dy / speed * vmax
-
-    return dx, dy
+    return (dx / dist) * speed, (dy / dist) * speed
 
 """ with this function we check if the character model 
 (all of his rectangle sides) is in collision with any of the blocks in our lst_blocks"""
