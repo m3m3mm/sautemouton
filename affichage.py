@@ -90,8 +90,15 @@ def draw_main_menu(width, height):
                                 return started, selected_level
             elif 295 <= click[0] <= 322:
                 if 355 <= click[1] <= 385:
-                    print('hints')
                     image(60, 60,'design/controls.png',largeur = 224, hauteur = 280, ancrage='nw', tag='controls')
+                    event_hint = attend_ev()
+                    if type_ev(event_hint) == 'ClicGauche':
+                        click_hint = (abscisse(event_hint), ordonnee(event_hint))
+                        if 295 <= click_hint[0] <= 322:
+                            if 355 <= click_hint[1] <= 385:
+                                efface('controls')
+
+
 
 
 
