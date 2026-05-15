@@ -49,8 +49,11 @@ def game(character, lst_blocks, goal):
                     pygame.mixer.music.set_volume = 0.3
                     pygame.mixer.music.play(-1)
 
+
                     draw_victory_menu(height, width)
                     print("You won!")  # placeholder for win message
+
+
 
         if type_ev(ev) == 'Touche':
             if touche(ev) == 'BackSpace':

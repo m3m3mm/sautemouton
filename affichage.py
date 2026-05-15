@@ -31,7 +31,9 @@ def draw_character(character):
 def draw_victory_menu(height, width):
     """draws victory menu"""
     efface_tout()
+    efface('mouton')
     image(0, 0, 'design/winmenu.png', largeur = 345, hauteur = 400, ancrage='nw', tag='victory')
+
 
 def create_design():
     """creates design"""
@@ -47,6 +49,9 @@ def draw_main_menu(width, height):
     #rectangle(50, 170, 190, 220, remplissage="red")
     image(width/7, height/2 - 30, 'design/startgame.png', largeur=140, hauteur=50 , ancrage="nw", tag="start")
     image(width/7, height/2 + 40, 'design/option.png', largeur=140, hauteur=50 , ancrage="nw", tag="levels")
+
+    #cercle(310, 370, 15, couleur='red')
+    image(310, 370, 'design/hint.png', largeur=33, hauteur=33, ancrage='center', tag='hints')
 
     while True:
 
@@ -83,8 +88,10 @@ def draw_main_menu(width, height):
                                 started = True
                                 selected_level = 'second_level.txt'
                                 return started, selected_level
-
-
+            elif 295 <= click[0] <= 322:
+                if 355 <= click[1] <= 385:
+                    print('hints')
+                    image(60, 60,'design/controls.png',largeur = 224, hauteur = 280, ancrage='nw', tag='controls')
 
 
 
