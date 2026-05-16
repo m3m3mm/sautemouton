@@ -66,7 +66,12 @@ def open_file(filename):
 
     # character
     px, py = _parse_ints(lines[0], expected_count=2, line_num=1)
-    personnage = {"position": (px, py), "velocity": (0, 0)}
+
+
+    personnage = {
+        "position": (px, py),
+        "velocity": (0, 0)
+    }
 
     # the goal
     gx1, gy1, gx2, gy2 = _parse_ints(lines[1], expected_count=4, line_num=2)
