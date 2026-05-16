@@ -149,8 +149,7 @@ def game(character, lst_blocks, goal):
 
                             efface("solver_character")
 
-                            cercle(x + WIDTH / 2, y + HEIGHT / 2, WIDTH / 2, couleur="orange", remplissage="orange", tag="solver_character")
-
+                            image(x + WIDTH / 2, y + HEIGHT / 2, "design/wooly1.png", largeur=30, hauteur=30,ancrage="center", tag="solver_character")
                             mise_a_jour()
 
                             sleep(0.01)
