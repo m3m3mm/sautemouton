@@ -3,7 +3,6 @@ from info import *
 from fltk import *
 
 
-
 def draw_blocks(lst_blocks):
     """draws blocks"""
     for block in lst_blocks:
@@ -18,7 +17,6 @@ def draw_final_object(goal):
     x1, y1, x2, y2 = goal
     #rectangle(x1, y1, x2, y2, remplissage="white")
     image(x1, y1, 'design/chest.png', largeur = x2 - x1, hauteur = y2 - y1, ancrage="nw")
-
 
 
 def draw_character(character):
@@ -54,6 +52,7 @@ def draw_victory_menu(height, width):
 
     return (m_x1, m_y1, m_x2, m_y2), (r_x1, r_y1, r_x2, r_y2)
 
+
 def draw_pause_menu(win_width, win_height):
     """draws pause overlay with resume and main menu buttons, returns their rects"""
     rectangle(50, 120, 295, 300,
@@ -83,9 +82,11 @@ def draw_pause_menu(win_width, win_height):
 
     return (r_x1, r_y1, r_x2, r_y2), (m_x1, m_y1, m_x2, m_y2)
 
+
 def create_design():
     """creates design"""
     image(0, 0, "design/background.ppm", ancrage="nw")
+
 
 def draw_main_menu(width, height):
     """draws main menu"""
@@ -145,10 +146,3 @@ def draw_main_menu(width, height):
                         if 295 <= click_hint[0] <= 322:
                             if 355 <= click_hint[1] <= 385:
                                 efface('controls')
-
-
-
-
-
-
-

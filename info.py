@@ -32,6 +32,7 @@ def _parse_ints(line, expected_count, line_num):
 
 def open_file(filename):
     """
+    Function to open the file and return the obtain info of the level (characters, list of blocks and the goal
     Add a file for a level.
 
     Awaited format :
@@ -67,8 +68,7 @@ def open_file(filename):
     # character
     px, py = _parse_ints(lines[0], expected_count=2, line_num=1)
 
-
-    personnage = {
+    character = {
         "position": (px, py),
         "velocity": (0, 0)
     }
@@ -83,6 +83,6 @@ def open_file(filename):
         bx1, by1, bx2, by2 = _parse_ints(lines[i], expected_count=4, line_num=i + 1)
         lst_blocs.append((bx1, by1, bx2, by2))
 
-    return personnage, lst_blocs, goal
+    return character, lst_blocs, goal
 
 character, lst_blocks, goal = open_file("niveau_info.txt")

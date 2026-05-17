@@ -25,10 +25,10 @@ def click_to_velocity(character, click):
 
     return (dx / dist) * speed, (dy / dist) * speed
 
-""" with this function we check if the character model 
-(all of his rectangle sides) is in collision with any of the blocks in our lst_blocks"""
 
 def collision(character, lst_blocks):
+    """ with this function we check if the character model
+    (all of his rectangle sides) is in collision with any of the blocks in our lst_blocks"""
     x, y = character["position"]
     c_left   = x
     c_right  = x + WIDTH
@@ -46,9 +46,9 @@ def collision(character, lst_blocks):
 
     return None  # no collision
 
-# print(collision(character, lst_blocks))
-"""to check if the character hit anything and push him out of it"""
 def hit(character, lst_blocks):
+    """to check if the character hit anything and push him out of it"""
+
     block_hit = collision(character, lst_blocks)
 
     if block_hit is None:
@@ -93,8 +93,9 @@ def hit(character, lst_blocks):
             character["velocity"] = (vx, 0)
 
 
-"""to move the character"""
-def step(character, lst_blocks): #TODO: figure out what a step() should return and how to work with it
+def step(character, lst_blocks):
+    """to move the character"""
+
     current_x, current_y = character["position"]
     vx, vy  = character["velocity"]
     new_x = current_x + STEP * vx
@@ -110,8 +111,9 @@ def step(character, lst_blocks): #TODO: figure out what a step() should return a
 
     hit(character, lst_blocks)
 
-"""basically a loop for step(), but if more complex - does a simulation of a launch of our mouton"""
 def simulate(character, lst_blocks):
+    """basically a loop for step(), but if more complex - does a simulation of a launch of our mouton"""
+
     while True:
         old_pos = character["position"]
         step(character, lst_blocks)
@@ -127,6 +129,7 @@ def simulate(character, lst_blocks):
 
 
 def victory(character, goal):
+    """detects if character has reached the goal or no and sends True/False"""
     x, y = character["position"]
     c_left = x
     c_right = x + WIDTH

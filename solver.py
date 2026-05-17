@@ -9,6 +9,7 @@ from collections import deque
 SOLVER_STEP = 0.3
 
 def solver_step(character, lst_blocks):
+    """moves the character for the solver"""
     current_x, current_y = character["position"]
     vx, vy  = character["velocity"]
     new_x = current_x + SOLVER_STEP * vx
@@ -23,6 +24,8 @@ def solver_step(character, lst_blocks):
     hit(character, lst_blocks)
 
 def solver_simulate(character, lst_blocks):
+    """almost a same function as "step", but for the solver"""
+
     max_steps = 1000
 
     for _ in range(max_steps):
@@ -36,6 +39,7 @@ def solver_simulate(character, lst_blocks):
 
 
 def get_velocities():
+    """gets a list of all possible velocities with a step of 2 to limit the amount of variations"""
     velocities = []
     step = 2
     for vx in range(int(-vmax), vmax + 1, step):
@@ -47,9 +51,12 @@ def get_velocities():
 global_velocities = get_velocities()
 
 def roundup_pos(position):
+    """rounds up the position due to unlimited amount of possible positions"""
     return (int(position[0]) // POSITION_R, int(position[1]) // POSITION_R)
 
 def is_grounded(character, lst_blocks):
+    """checks if the character is on the floor if the velocity is 0.
+    if not - tells us that the character is either stuck in the air or stuck to a wall from the side"""
 
     x, y = character['position']
     below = {'position': (x, y + 1), 'velocity': (0, 0)}
@@ -57,6 +64,8 @@ def is_grounded(character, lst_blocks):
 
 
 def is_valid_state(character, lst_blocks):
+    """tells us if the character is in a valid position (not outside the window given, stuck or smth)"""
+
     vx, vy = character['velocity']
     if (vx, vy) != (0, 0):
         return False
@@ -74,9 +83,9 @@ def is_valid_state(character, lst_blocks):
 
     return True
 
-"""DFS solution"""
 
 def dfs(start_character, lst_blocks, goal):
+    """Iterative DFS pathfinder. Returns list of (vx, vy) moves to reach goal, or None."""
     visited = set()
     # now we're saving it in stack, not with recursion,
     # no mutation, only copies + no pop/append - branches out
@@ -110,9 +119,9 @@ def dfs(start_character, lst_blocks, goal):
     return None
 
 
-"""BFS - only change is deque instead of list"""
 
 def bfs(start_character, lst_blocks, goal):
+    """BFS - only change is deque instead of list"""
     visited = set()
     # очередь вместо стека - единственное отличие от DFS
     queue = deque([
