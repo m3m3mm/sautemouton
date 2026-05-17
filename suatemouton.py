@@ -10,13 +10,23 @@ pygame.mixer.music.load('Moonpetal.mp3')
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(0.3)
 
-start_game, selected_level = draw_main_menu(width, height)
-if start_game:
+# main loop: menu -> game -> menu -> ...
+while True:
+    efface_tout()
+    start_game, selected_level = draw_main_menu(width, height)
+
     character, lst_blocks, goal = open_file(selected_level)
-    game(character, lst_blocks, goal)
-else:
-    character, lst_blocks, goal = open_file(selected_level)
-    game(character, lst_blocks, goal)
+
+    result = game(character, lst_blocks, goal)
+
+    if result == "quit":
+        break
+
+    # result == "menu": restart background music and go back to main menu
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load('Moonpetal.mp3')
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.3)
 
 
 ferme_fenetre()
