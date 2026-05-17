@@ -5,13 +5,14 @@ from const_values import *
 
 cree_fenetre(width, height)
 
-pygame.mixer.init()
-pygame.mixer.music.load('Moonpetal.mp3')
-pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.3)
 
 # outer main loop: menu -> game -> menu -> ...
 while True:
+    pygame.mixer.init()
+    pygame.mixer.music.load('Moonpetal.mp3')
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.3)
+
     efface_tout()
     start_game, selected_level = draw_main_menu(width, height)
     character, lst_blocks, goal = open_file(selected_level)

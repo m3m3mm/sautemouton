@@ -23,7 +23,7 @@ def _redraw_game(character, lst_blocks, goal):
 
 def _handle_pause(character, lst_blocks, goal):
     """shows pause menu and waits for player choice, returns 'resume', 'menu' or 'quit'"""
-    resume_rect, menu_rect = draw_pause_menu(width, height)
+    resume_rect, menu_rect = draw_pause_menu()
     mise_a_jour()
 
     while True:

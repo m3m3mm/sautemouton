@@ -22,7 +22,6 @@ def draw_final_object(goal):
 def draw_character(character):
     """draws character"""
     x, y = character['position']
-    #cercle(x + WIDTH / 2, y + HEIGHT / 2, WIDTH / 2, remplissage="red", tag="mouton")
     image(x + WIDTH / 2, y + HEIGHT / 2, "design/wooly.png", largeur = 30, hauteur = 30, ancrage="center", tag="mouton")
 
 
