@@ -25,5 +25,9 @@ while True:
             exit()
         if result == "replay":
             character, lst_blocks, goal = open_file(selected_level)
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load('Moonpetal.mp3')
+            pygame.mixer.music.set_volume(0.3)
+            pygame.mixer.music.play(-1)
             continue  # again inner loop
         break  # result == "menu" — outer loop
