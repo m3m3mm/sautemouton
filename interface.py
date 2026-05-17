@@ -83,8 +83,11 @@ def game(character, lst_blocks, goal):
         if game_state == "victory":
             if type_ev(ev) == 'ClicGauche' and victory_btn_rect is not None:
                 x, y = abscisse(ev), ordonnee(ev)
-                if _in_rect(x, y, victory_btn_rect):
+                menu_rect, replay_rect = victory_btn_rect
+                if _in_rect(x, y, menu_rect):
                     return "menu"
+                if _in_rect(x, y, replay_rect):
+                    return "replay"
             mise_a_jour()
             continue
 
@@ -112,12 +115,12 @@ def game(character, lst_blocks, goal):
 
                         pygame.mixer.music.stop()
                         pygame.mixer.music.load('Wooly Victory.mp3')
-                        pygame.mixer.music.set_volume = 0.3
+                        pygame.mixer.music.set_volume(0.3)
                         pygame.mixer.music.play(-1)
 
-
-                        draw_victory_menu(height, width)
-                        print("You won!")  # placeholder for win message
+                        menu_rect, replay_rect = draw_victory_menu(height, width)
+                        victory_btn_rect = (menu_rect, replay_rect)
+                        game_state = "victory"
 
 
 

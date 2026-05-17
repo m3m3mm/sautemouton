@@ -34,6 +34,25 @@ def draw_victory_menu(height, width):
     efface('mouton')
     image(0, 0, 'design/winmenu.png', largeur = 345, hauteur = 400, ancrage='nw', tag='victory')
 
+    # button Main menu
+    m_x1, m_y1, m_x2, m_y2 = 85, 290, 260, 330
+    rectangle(m_x1, m_y1, m_x2, m_y2,
+              remplissage="#6b2737", couleur="#e07a5f",
+              epaisseur=2, tag="victory")
+    texte((m_x1 + m_x2) // 2, (m_y1 + m_y2) // 2,
+          "Main Menu", couleur="white", taille=13,
+          ancrage="center", tag="victory")
+
+    # button Play Again
+    r_x1, r_y1, r_x2, r_y2 = 85, 340, 260, 380
+    rectangle(r_x1, r_y1, r_x2, r_y2,
+              remplissage="#2d6a4f", couleur="#52b788",
+              epaisseur=2, tag="victory")
+    texte((r_x1 + r_x2) // 2, (r_y1 + r_y2) // 2,
+          "Play Again", couleur="white", taille=13,
+          ancrage="center", tag="victory")
+
+    return (m_x1, m_y1, m_x2, m_y2), (r_x1, r_y1, r_x2, r_y2)
 
 def draw_pause_menu(win_width, win_height):
     """draws pause overlay with resume and main menu buttons, returns their rects"""
