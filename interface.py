@@ -64,7 +64,7 @@ def game(character, lst_blocks, goal):
 
         # added game end on clicking "X"
         if type_ev(ev) == "Quitte":
-            break
+            return "quit"
 
         # Esc opens the pause menu during gameplay
         if type_ev(ev) == 'Touche' and touche(ev) == 'Escape':
@@ -118,6 +118,7 @@ def game(character, lst_blocks, goal):
                         pygame.mixer.music.set_volume(0.3)
                         pygame.mixer.music.play(-1)
 
+                        efface('mouton')
                         menu_rect, replay_rect = draw_victory_menu(height, width)
                         victory_btn_rect = (menu_rect, replay_rect)
                         game_state = "victory"
@@ -224,8 +225,10 @@ def game(character, lst_blocks, goal):
 
                                 if dolly["position"] == old_pos:
                                     break
-        efface('mouton')
-        draw_character(character)
+
+        if game_state == "playing":
+            efface('mouton')
+            draw_character(character)
 
         if click is not None:
             cx = character['position'][0] + WIDTH / 2
