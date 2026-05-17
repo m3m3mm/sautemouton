@@ -17,10 +17,6 @@ while True:
     character, lst_blocks, goal = open_file(selected_level)
 
     while True:  # inner loop
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load('Moonpetal.mp3')
-        pygame.mixer.music.play(-1)
-        pygame.mixer.music.set_volume(0.3)
 
         result = game(character, lst_blocks, goal)
 
