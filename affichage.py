@@ -53,32 +53,17 @@ def draw_victory_menu(height, width):
     return (m_x1, m_y1, m_x2, m_y2), (r_x1, r_y1, r_x2, r_y2)
 
 
-def draw_pause_menu(win_width, win_height):
+def draw_pause_menu():
     """draws pause overlay with resume and main menu buttons, returns their rects"""
-    rectangle(50, 120, 295, 300,
-              remplissage="#0d1b2a", couleur="#4a90d9",
-              epaisseur=3, tag="pause_overlay")
+    image(172, 200,
+              "design/pause_menu.png",
+              largeur=250,
+              hauteur=250,
+              ancrage="center",
+              tag="pause_overlay")
 
-    texte(172, 140, "— PAUSE —",
-          couleur="#e0e0e0", taille=16, ancrage="center", tag="pause_overlay")
-
-    # resume button
-    r_x1, r_y1, r_x2, r_y2 = 85, 170, 260, 210
-    rectangle(r_x1, r_y1, r_x2, r_y2,
-              remplissage="#2d6a4f", couleur="#52b788",
-              epaisseur=2, tag="pause_overlay")
-    texte((r_x1 + r_x2) // 2, (r_y1 + r_y2) // 2,
-          "Continue",
-          couleur="white", taille=13, ancrage="center", tag="pause_overlay")
-
-    # main menu button
-    m_x1, m_y1, m_x2, m_y2 = 85, 230, 260, 270
-    rectangle(m_x1, m_y1, m_x2, m_y2,
-              remplissage="#6b2737", couleur="#e07a5f",
-              epaisseur=2, tag="pause_overlay")
-    texte((m_x1 + m_x2) // 2, (m_y1 + m_y2) // 2,
-          "Main Menu",
-          couleur="white", taille=13, ancrage="center", tag="pause_overlay")
+    r_x1, r_y1, r_x2, r_y2 = 127, 176, 220, 212
+    m_x1, m_y1, m_x2, m_y2 = 127, 220, 220, 255
 
     return (r_x1, r_y1, r_x2, r_y2), (m_x1, m_y1, m_x2, m_y2)
 
